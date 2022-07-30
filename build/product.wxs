@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+
+<!--
+  Copyright 2022 Heath Stewart.
+  Licensed under the MIT License. See LICENSE.txt in the project root for license information.
+-->
+
+<?define Name = "Telemetry Sample"?>
+
+<?ifndef Version?>
+<?define Version = "0.1.0"?>
+<?endif?>
+
+<?define UpgradeCode = "4FB54983-840E-49AD-973A-C53DC176AE81"?>
+
+<?ifndef Manufacturer?>
+<?define Manufacturer = "Heath Stewart"?>
+<?endif?>
+
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Product Id="*" Name="$(var.Name)" Version="$(var.Version)" UpgradeCode="$(var.UpgradeCode)" Manufacturer="$(var.Manufacturer)" Language="1033">
+    <Package InstallerVersion="500" Compressed="yes" InstallScope="perUser" />
+    <MediaTemplate EmbedCab="yes" />
+    <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFilesFolder" Name="Program Files">
+        <Directory Id="ManufacturerDir" Name="$(var.Manufacturer)">
+          <Directory Id="INSTALLDIR" Name="$(var.Name)" />
+        </Directory>
+      </Directory>
+    </Directory>
+    <Feature Id="Complete" ConfigurableDirectory="INSTALLDIR">
+      <Component Directory="INSTALLDIR">
+        <File Source="$(sys.SOURCEFILEPATH)" />
+      </Component>
+    </Feature>
+    <CustomActionRef Id="OTInitialize" />
+    <Property Id="ALLUSERS" Value="2" />
+    <Property Id="MSIINSTALLPERUSER" Value="1" />
+  </Product>
+</Wix>

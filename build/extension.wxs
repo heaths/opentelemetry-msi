@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+
+<!--
+  Copyright 2022 Heath Stewart.
+  Licensed under the MIT License. See LICENSE.txt in the project root for license information.
+-->
+
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Fragment>
+    <Binary Id="OpenTelemetry" SourceFile="!(bindpath.TargetDir)\otmsi.dll" />
+    <CustomAction Id="OTInitialize" BinaryKey="OpenTelemetry" DllEntry="OTInitialize" Execute="firstSequence" />
+    <InstallUISequence>
+      <Custom Action="OTInitialize" Sequence="1" />
+    </InstallUISequence>
+    <InstallExecuteSequence>
+      <Custom Action="OTInitialize" Sequence="1" />
+    </InstallExecuteSequence>
+  </Fragment>
+</Wix>

@@ -1,0 +1,12 @@
+{
+    "version": "0.2",
+    "language": "en",
+    "words": [
+        "INSTALLMESSAGE",
+        "LPCSTR",
+        "MSIHANDLE"
+    ],
+    "ignoreRegExpList": [
+        "INSTALLMESSAGE_\\w+"
+    ]
+}
