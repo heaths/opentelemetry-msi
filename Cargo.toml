@@ -11,4 +11,4 @@ name = "otmsi"
 crate-type = ["cdylib"]
 
 [profile.release]
-strip = "debuginfo"
+debug = true
