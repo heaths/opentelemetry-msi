@@ -4,7 +4,10 @@
     "words": [
         "INSTALLMESSAGE",
         "LPCSTR",
-        "MSIHANDLE"
+        "LPSTR",
+        "MSIHANDLE",
+        "repr",
+        "USEREXIT"
     ],
     "ignoreRegExpList": [
         "INSTALLMESSAGE_\\w+"

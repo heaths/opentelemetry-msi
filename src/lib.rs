@@ -5,22 +5,20 @@ mod msi;
 use msi::*;
 
 #[no_mangle]
-pub extern "C" fn OTInitialize(h: MSIHANDLE) -> UINT {
-    log(h, "This is a log message");
+pub extern "C" fn OTInitialize(h: MSIHANDLE) -> u32 {
+    let session = Session::from(h);
+    let product_code = session.property("ProductCode");
 
     let record = Record::new(
-        Some("This is one [1] of [2]".to_owned()),
+        Some("This is one [1] of [2] for product [3]".to_owned()),
         vec![
-            RecordField::String("test".to_owned()),
-            RecordField::Integer(1),
+            Field::String("test".to_owned()),
+            Field::Integer(1),
+            Field::String(product_code),
         ],
     );
-    process_message(h, INSTALLMESSAGE_INFO, &record);
+
+    session.message(MessageType::Info, &record);
 
     ERROR_SUCCESS
-}
-
-fn log(h: MSIHANDLE, s: &str) {
-    let r: Record = s.into();
-    process_message(h, INSTALLMESSAGE_INFO, &r);
 }

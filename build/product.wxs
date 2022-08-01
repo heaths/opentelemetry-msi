@@ -21,7 +21,7 @@
   <Product Id="*" Name="$(var.Name)" Version="$(var.Version)" UpgradeCode="$(var.UpgradeCode)" Manufacturer="$(var.Manufacturer)" Language="1033">
     <Package InstallerVersion="500" Compressed="yes" InstallScope="perUser" />
     <MediaTemplate EmbedCab="yes" />
-    <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+    <MajorUpgrade AllowSameVersionUpgrades="yes" DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
     <Directory Id="TARGETDIR" Name="SourceDir">
       <Directory Id="ProgramFilesFolder" Name="Program Files">
         <Directory Id="ManufacturerDir" Name="$(var.Manufacturer)">

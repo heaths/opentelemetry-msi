@@ -17,6 +17,7 @@
       Version=$(ProductVersion);
       $(DefineConstants)
     </DefineConstants>
+    <SuppressIces>ICE61</SuppressIces>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <OutputPath>bin\$(Configuration)\</OutputPath>
@@ -25,6 +26,7 @@
       $(DefineConstants);
       Debug
     </DefineConstants>
+    <SuppressValidation>true</SuppressValidation>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <OutputPath>bin\$(Configuration)\</OutputPath>
