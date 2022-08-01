@@ -31,7 +31,7 @@ impl Session {
             ) == ffi::ERROR_MORE_DATA
             {
                 let mut value_len = value_len + 1u32;
-                let mut value: Vec<u8> = Vec::with_capacity(value_len as usize);
+                let mut value: Vec<u8> = vec![0; value_len as usize];
 
                 ffi::MsiGetProperty(
                     self.h,
@@ -40,10 +40,8 @@ impl Session {
                     &mut value_len as *mut u32,
                 );
 
-                return CString::from_vec_with_nul(value)
-                    .unwrap_or_default()
-                    .into_string()
-                    .unwrap_or_default();
+                value.truncate(value_len as usize);
+                return String::from_utf8(value).unwrap();
             }
 
             String::default()
